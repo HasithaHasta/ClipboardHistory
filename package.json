@@ -1,0 +1,118 @@
+{
+  "name": "clipboard-history",
+  "displayName": "Clipboard History",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+      "onCommand:clipboard.copy",
+      "onCommand:clipboard.cut",
+      "onCommand:clipboard.paste",
+      "onCommand:clipboard.pasteFromClipboard",
+      "onCommand:clipboard.removeFromClipboard",
+      "onCommand:clipboard.editClipboard"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Clipboard History",
+      "properties": {
+          "clipboard.size": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 12,
+              "description": "Maximum number of items saved in clipboard"
+          }
+      }
+  },
+  "commands": [
+      {
+          "command": "clipboard.copy",
+          "title": "Copy to Clipboard"
+      },
+      {
+          "command": "clipboard.cut",
+          "title": "Cut to Clipboard"
+      },
+      {
+          "command": "clipboard.paste",
+          "title": "Paste"
+      },
+      {
+          "command": "clipboard.pasteFromClipboard",
+          "title": "Paste from Clipboard"
+      },
+      {
+          "command": "clipboard.removeFromClipboard",
+          "title": "Remove from Clipboard"
+      },
+      {
+          "command": "clipboard.editClipboard",
+          "title": "Edit Clipboard"
+      }
+  ],
+  "keybindings": [
+      {
+          "command": "clipboard.copy",
+          "key": "ctrl+c",
+          "mac": "cmd+c",
+          "when": "editorTextFocus"
+      },
+      {
+          "command": "clipboard.cut",
+          "key": "ctrl+x",
+          "mac": "cmd+x",
+          "when": "editorTextFocus"
+      },
+      {
+        "command": "clipboard.paste",
+        "key": "ctrl+v",
+        "mac": "cmd+v",
+        "when": "editorTextFocus"
+    },
+    {
+        "command": "clipboard.pasteFromClipboard",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "when": "editorTextFocus"
+    },
+    {
+        "command": "clipboard.removeFromClipboard",
+        "key": "ctrl+alt+v d",
+        "mac": "cmd+alt+v d",
+        "when": "editorTextFocus"
+    },
+    {
+        "command": "clipboard.editClipboard",
+        "key": "ctrl+alt+v e",
+        "mac": "cmd+alt+v e",
+        "when": "editorTextFocus"
+    }
+]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
